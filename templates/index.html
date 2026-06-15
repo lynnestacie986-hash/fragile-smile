@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital Journal</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; }
+        h1 { color: #333; text-align: center; }
+        form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+        textarea { padding: 10px; height: 100px; border: 1px solid #ccc; border-radius: 5px; resize: vertical; }
+        button { padding: 10px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .entry { background: white; padding: 15px; border-radius: 5px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .date { font-size: 0.8rem; color: #777; margin-bottom: 8px; }
+        .text { white-space: pre-wrap; color: #333; }
+    </style>
+</head>
+<body>
+
+    <h1>📖 My Digital Journal</h1>
+
+    <form action="/add" method="POST">
+        <textarea name="content" placeholder="What's on your mind today?" required></textarea>
+        <button type="submit">Save Entry</button>
+    </form>
+
+    <hr>
+
+    <h2>Past Entries</h2>
+    <div id="entries-list">
+        {% for entry in entries %}
+        <div class="entry">
+            <div class="date">🕒 {{ entry.date }}</div>
+            <div class="text">{{ entry.text }}</div>
+        </div>
+        {% else %}
+        <p>No entries yet. Start writing above!</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
